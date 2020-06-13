@@ -8,6 +8,7 @@ steps:
     repo: j33r/php-fpm
     tags: latest
     dockerfile: build/php-fpm/Dockerfile
+    context: build/php-fpm
     username: j33r
     password:
       from_secret: DOCKER_HUB_TOKKEN
@@ -18,6 +19,7 @@ steps:
     repo: j33r/nginx
     tags: latest
     dockerfile: build/nginx/Dockerfile
+    context: build/nginx
     username: j33r
     password:
       from_secret: DOCKER_HUB_TOKKEN
