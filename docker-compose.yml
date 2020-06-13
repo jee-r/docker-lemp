@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  php:
+    build: ./build/php-fpm/
+    image: php-fpm:latest
+    #container_name: php-fpm
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - php:/php
+      - app:/app
+
+  nginx:
+    build: ./build/nginx
+    image: nginx:latest
+    #container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - php:/php
+      - app:/app
+    ports:
+      - "8080:8080"
+
+#  db:
+#    image: postgres:alpine
+#    #container_name: postgresql
+#    restart: unless-stopped
+#    volumes:
+#      - db:/var/lib/postgresql/data
+#    environment:
+#      - POSTGRES_USER=freshrss
+#      - POSTGRES_PASSWORD=freshrss
+#      - POSTGRES_DB=freshrss
+
+  db:
+    image: mariadb:latest
+    #container_name: db
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=php_app
+      - MYSQL_USER=php_app
+      - MYSQL_PASSWORD=php_app_passwors
+
+volumes:
+  php:
+  app:
+  db:

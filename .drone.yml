@@ -1,0 +1,23 @@
+kind: pipeline
+name: default
+
+steps:
+- name: php-fpm
+  image: plugins/docker:latest
+  settings:
+    repo: j33r/php-fpm
+    tags: latest
+    dockerfile: build/php-fpm/Dockerfile
+    username: j33r
+    password:
+      from_secret: DOCKER_HUB_TOKKEN
+
+- name: nginx
+  image: plugins/docker:latest
+  settings:
+    repo: j33r/nginx
+    tags: latest
+    dockerfile: build/nginx/Dockerfile
+    username: j33r
+    password:
+      from_secret: DOCKER_HUB_TOKKEN
