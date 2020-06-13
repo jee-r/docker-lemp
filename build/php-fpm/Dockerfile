@@ -7,9 +7,9 @@ ARG GID=1000
 ARG USER_NAME=php
 ARG GROUP_NAME=php
 
-COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY ./phpinfo.php /app/index.php
-COPY ./php-fpm.conf /etc/php7/php-fpm.conf
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY phpinfo.php /app/index.php
+COPY php-fpm.conf /etc/php7/php-fpm.conf
 
 RUN apk update && \
     apk upgrade && \
