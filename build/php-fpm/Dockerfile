@@ -7,7 +7,6 @@ ARG GID=1000
 ARG USER_NAME=php
 ARG GROUP_NAME=php
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY php-fpm.conf /etc/php7/php-fpm.conf
 
 RUN apk update && \
@@ -52,12 +51,11 @@ RUN apk update && \
     fi && \
     mkdir -p /php && \
     mkdir -p /app/cron && \
-    chown -R ${UID}:${GID} /php /app && \
-    chmod +x /usr/local/bin/entrypoint.sh
+    chown -R ${UID}:${GID} /php /app
 
 WORKDIR /app
 USER $USER_NAME:$GROUP_NAME
 
 STOPSIGNAL SIGQUIT
 VOLUME ["/php", "/app"]
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/sbin/php-fpm7", "-y", "/etc/php7/php-fpm.conf"]

@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - ./build/php/phpinfo.php:/app/phpinfo.php
       - php:/php
       - app:/app
 
