@@ -9,6 +9,7 @@ USER root
 RUN apk update && \
     apk upgrade && \
     apk --no-cache add shadow && \
+    echo "Add Group ${GROUP_NAME} with gid ${GID}" && \
     if [ "$(grep ':'${GID}':' /etc/group)" == "" ]; then \
       addgroup -g ${GID} ${GROUP_NAME}; \
     else \

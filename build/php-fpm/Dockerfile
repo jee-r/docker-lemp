@@ -40,7 +40,7 @@ RUN apk update && \
       php7-pdo_sqlite \
       php7-pdo_mysql \
       php7-pdo_pgsql && \
-      echo "Create ${USER_NAME} user ..." && \
+      echo "Create user ${USER_NAME} with uid:${UID} and group with gid:${GID} ..." && \
     if [ "$(grep ':'${GID}':' /etc/group)" == "" ]; then \
       addgroup -g ${GID} ${GROUP_NAME}; \
     else \
