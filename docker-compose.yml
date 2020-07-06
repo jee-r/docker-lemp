@@ -2,13 +2,12 @@ version: "3.8"
 
 services:
   php:
-    build: ./build/php-fpm/
+    build: ./build/php/
     image: php-fpm:latest
     #container_name: php-fpm
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./build/php-fpm/phpinfo.php:/app/index.php
       - php:/php
       - app:/app
 
@@ -26,28 +25,30 @@ services:
 
 #  db:
 #    image: postgres:alpine
-#    #container_name: postgresql
+#    container_name: postgres
 #    restart: unless-stopped
+#    networks:
+#      - php-app
 #    volumes:
-#      - db:/var/lib/postgresql/data
+#      - app_db:/var/lib/postgresql/data
 #    environment:
-#      - POSTGRES_USER=freshrss
-#      - POSTGRES_PASSWORD=freshrss
-#      - POSTGRES_DB=freshrss
+#      - POSTGRES_USER=db_user
+#      - POSTGRES_PASSWORD=db_password
+#      - POSTGRES_DB=database
 
   db:
     image: mariadb:latest
-    #container_name: db
+    container_name: db
     restart: unless-stopped
     volumes:
-      - db:/var/lib/postgresql/data
+      - app_db:/var/lib/postgresql/data
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - MYSQL_DATABASE=php_app
-      - MYSQL_USER=php_app
-      - MYSQL_PASSWORD=php_app_passwors
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_password
 
 volumes:
   php:
   app:
-  db:
+  app_db:
