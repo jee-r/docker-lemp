@@ -4,11 +4,11 @@ services:
   php:
     build:
       context: ./build/php-fpm/
-      args:
+      #args:
         #- UID=${UID}
         #- GID=${GID}
-        - USER_NAME=php
-        - GROUP_NAME=php
+        #- USER_NAME=php
+        #- GROUP_NAME=php
     image: php-fpm:latest
     #container_name: php-fpm
     restart: unless-stopped
@@ -20,9 +20,9 @@ services:
   nginx:
     build:
       context: ./build/nginx
-      args:
-        - GID=${GID}
-        - GROUP_NAME=php
+      #args:
+        #- GID=${GID}
+        #- GROUP_NAME=php
     image: nginx:latest
     #container_name: nginx
     restart: unless-stopped
