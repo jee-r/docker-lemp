@@ -4,9 +4,6 @@ LABEL maintainer="Jee"
 ARG GID=${GID:-1000}
 ARG GROUP_NAME=${GROUP_NAME:-php}
 
-ARG GID=
-ARG GROUP_NAME=php
-
 USER root
 
 RUN apk update && \
