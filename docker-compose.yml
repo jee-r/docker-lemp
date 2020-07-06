@@ -2,7 +2,13 @@ version: "3.8"
 
 services:
   php:
-    build: ./build/php/
+    build:
+      context: ./build/php-fpm/
+      args:
+        #- UID=${UID}
+        #- GID=${GID}
+        - USER_NAME=php
+        - GROUP_NAME=php
     image: php-fpm:latest
     #container_name: php-fpm
     restart: unless-stopped
@@ -12,7 +18,11 @@ services:
       - app:/app
 
   nginx:
-    build: ./build/nginx
+    build:
+      context: ./build/nginx
+      args:
+        - GID=${GID}
+        - GROUP_NAME=php
     image: nginx:latest
     #container_name: nginx
     restart: unless-stopped

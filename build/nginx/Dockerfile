@@ -1,7 +1,10 @@
 FROM nginxinc/nginx-unprivileged:alpine
 LABEL maintainer="Jee"
 
-ARG GID=1000
+ARG GID=${GID:-1000}
+ARG GROUP_NAME=${GROUP_NAME:-php}
+
+ARG GID=
 ARG GROUP_NAME=php
 
 USER root

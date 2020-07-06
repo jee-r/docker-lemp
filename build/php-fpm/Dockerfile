@@ -2,10 +2,10 @@ FROM alpine:3.12
 
 LABEL maintainer="Jee"
 
-ARG UID=1000
-ARG GID=1000
-ARG USER_NAME=php
-ARG GROUP_NAME=php
+ARG UID=${UID:-1000}
+ARG GID=${GID:-1000}
+ARG USER_NAME=${USER_NAME:-php}
+ARG GROUP_NAME=${GROUP_NAME:-php}
 
 COPY php-fpm.conf /etc/php7/php-fpm.conf
 
