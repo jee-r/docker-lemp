@@ -1,4 +1,9 @@
 # docker-lemp
+**ARCHIVED** see :
+https://git.c0de.in/docker/php-fpm
+https://git.c0de.in/docker/nginx
+
+
 **L**inux + Nginx (**E**ngine-X) + **M**ysql + **P**HP
 Build Status : [![Build Status](https://cloud.drone.io/api/badges/jee-r/docker-lemp/status.svg)](https://cloud.drone.io/jee-r/docker-lemp)
 
